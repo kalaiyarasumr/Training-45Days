@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Menu | Food Fiesta</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fff8f0;
+    }
+
+    nav {
+      background-color: white;
+      padding: 15px 50px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    nav .brand {
+      font-size: 26px;
+      font-weight: bold;
+      color: #d84315;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #d84315;
+    }
+
+    header {
+      text-align: center;
+      background-color: #ff7043;
+      color: white;
+      padding: 60px 20px;
+    }
+
+    header h1 {
+      font-size: 42px;
+      margin-bottom: 10px;
+    }
+
+    header p {
+      font-size: 18px;
+      margin: 0;
+    }
+
+    main {
+      max-width: 1200px;
+      margin: auto;
+      padding: 40px 20px;
+    }
+
+    h2.section-title {
+      color: #d84315;
+      border-bottom: 2px solid #ffd180;
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+    }
+
+    .menu-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+
+    .menu-card {
+      flex: 1 1 300px;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px #ccc;
+      padding: 20px;
+      transition: transform 0.3s ease;
+    }
+
+    .menu-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .menu-card h3 {
+      margin-top: 0;
+      color: #bf360c;
+    }
+
+    .menu-card p {
+      color: #555;
+      margin: 8px 0;
+    }
+
+    .menu-card .price {
+      font-weight: bold;
+      color: #d84315;
+    }
+
+    footer {
+      background-color: #d84315;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+
+    footer a {
+      color: #fff;
+      text-decoration: underline;
+    }
+
+    footer a:hover {
+      color: #ffd54f;
+    }
+
+    @media (max-width: 768px) {
+      nav ul {
+        flex-direction: column;
+        gap: 15px;
+      }
+      .menu-grid {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav style="background-color: white; padding: 15px 50px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 2px 8px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 100;">
+        <div style="font-size: 26px; font-weight: bold; color: #d84315; font-family: 'Segoe UI', sans-serif;">
+            Food Fiesta
+        </div>
+
+        <ul style="list-style: none; display: flex; gap: 30px; margin: 0; padding: 0; align-items: center;">
+            <li><a href="home.html" style="text-decoration: none; color: #333; font-weight: 500; transition: 0.3s;" onmouseover="this.style.color='#d84315'" onmouseout="this.style.color='#333'">Home</a></li>
+            <li><a href="about.html" style="text-decoration: none; color: #333; font-weight: 500; transition: 0.3s;" onmouseover="this.style.color='#d84315'" onmouseout="this.style.color='#333'">About Us</a></li>
+            <li><a href="menu.html" style="text-decoration: none; color: #333; font-weight: 500; transition: 0.3s;" onmouseover="this.style.color='#d84315'" onmouseout="this.style.color='#333'">Menu</a></li>
+            <li><a href="#" style="text-decoration: none; color: #333; font-weight: 500; transition: 0.3s;" onmouseover="this.style.color='#d84315'" onmouseout="this.style.color='#333'">Contact</a></li>
+            <li>
+               
+            </li>
+        </ul>
+    </nav>
+
+  <!-- Header -->
+  <header>
+    <h1>Our Menu</h1>
+    <p>Explore our handcrafted selections made fresh daily</p>
+  </header>
+
+  <!-- Menu Sections -->
+  <main>
+    <!-- Starters -->
+    <h2 class="section-title">🥗 Starters</h2>
+    <div class="menu-grid">
+      <div class="menu-card">
+        <h3>Heritage Tomato Salad</h3>
+        <p>Heirloom tomatoes, burrata, basil oil, aged balsamic</p>
+        <p class="price">$14</p>
+      </div>
+      <div class="menu-card">
+        <h3>Duck Confit Spring Rolls</h3>
+        <p>Crispy wonton, hoisin glaze, pickled vegetables</p>
+        <p class="price">$16</p>
+      </div>
+    </div>
+
+    <!-- Main Courses -->
+    <h2 class="section-title">🍽️ Main Courses</h2>
+    <div class="menu-grid">
+      <div class="menu-card">
+        <h3>Herb-Crusted Rack of Lamb</h3>
+        <p>Provençal herbs, potato gratin, roasted baby vegetables</p>
+        <p class="price">$38</p>
+      </div>
+      <div class="menu-card">
+        <h3>Seared Scallops</h3>
+        <p>Cauliflower purée, pancetta crisp, truffle oil</p>
+        <p class="price">$32</p>
+      </div>
+      <div class="menu-card">
+        <h3>Mushroom Risotto</h3>
+        <p>Arborio rice, wild mushrooms, white truffle, parmesan</p>
+        <p class="price">$26</p>
+      </div>
+    </div>
+
+    <!-- Desserts -->
+    <h2 class="section-title">🍨 Desserts</h2>
+    <div class="menu-grid">
+      <div class="menu-card">
+        <h3>Chocolate Soufflé</h3>
+        <p>Valrhona chocolate, vanilla bean ice cream</p>
+        <p class="price">$12</p>
+      </div>
+      <div class="menu-card">
+        <h3>Seasonal Fruit Tart</h3>
+        <p>Almond frangipane, crème pâtissière</p>
+        <p class="price">$10</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Food Fiesta. All rights reserved.</p>
+    <p>Follow us on 
+      <a href="#">Instagram</a> | 
+      <a href="#">Facebook</a>
+    </p>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Table</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      margin: 0;
+    }
+
+    h2 {
+      text-align: center;
+      padding-top: 30px;
+      color: #222;
+    }
+
+    table {
+      width: 70%;
+      border-collapse: collapse;
+      margin: 30px auto;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    th, td {
+      border: 1px solid #ccc;
+      padding: 14px;
+      text-align: center;
+      font-size: 16px;
+    }
+
+    /* Zebra striping */
+    tr:nth-child(even) {
+      background-color: #ffffff; /* White */
+    }
+
+    tr:nth-child(odd) {
+      background-color: #000000; /* Black */
+      color: white;
+    }
+
+    th {
+      background-color: #ffffff;
+      color: rgb(15, 15, 15);
+      letter-spacing: 1px;
+    }
+
+    tr:hover {
+      background-color: #444;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>📋 Student Report </h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Subject</th>
+        <th>Score</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>John</td>
+        <td>Math</td>
+        <td>90</td>
+      </tr>
+      <tr>
+        <td>Mary</td>
+        <td>Science</td>
+        <td>85</td>
+      </tr>
+      <tr>
+        <td>David</td>
+        <td>English</td>
+        <td>88</td>
+      </tr>
+      <tr>
+        <td>Sara</td>
+        <td>History</td>
+        <td>91</td>
+      </tr>
+    </tbody>
+  </table>
+
+</body>
+</html>

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <title>Humanized Semantic Page</title>
+ <style>
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(to right, #e3f2fd, #fce4ec);
+    color: #222;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  /* NAVBAR STYLES */
+  nav {
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 16px 32px;
+    border-radius: 16px;
+    margin-bottom: 40px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    backdrop-filter: blur(10px);
+  }
+
+  nav .brand {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #0066cc;
+  }
+
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+    flex-wrap: wrap;
+  }
+
+  nav ul li a {
+    text-decoration: none;
+    color: #0066cc;
+    font-weight: 500;
+    position: relative;
+    padding: 8px 12px;
+    transition: all 0.3s ease;
+  }
+
+  nav ul li a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 2px;
+    width: 100%;
+    background-color: #0066cc;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease;
+  }
+
+  nav ul li a:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+
+  section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+    max-width: 1200px;
+    margin: 0 auto 60px;
+    justify-content: center;
+    align-items: stretch;
+  }
+
+  article {
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 20px;
+    padding: 24px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    backdrop-filter: blur(12px);
+    transition: transform 0.3s, box-shadow 0.3s;
+    width: 320px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  article:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 35px rgba(0, 0, 0, 0.12);
+  }
+
+  figure {
+    margin-bottom: 16px;
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  figure img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+
+  article:hover figure img {
+    transform: scale(1.03);
+  }
+
+  figure figcaption {
+    text-align: center;
+    font-size: 0.9rem;
+    color: #555;
+    margin-top: 10px;
+    font-style: italic;
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  h2 {
+    font-size: 1.4rem;
+    margin-bottom: 12px;
+    color: #2c3e50;
+    min-height: 48px;
+  }
+
+  p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #444;
+    min-height: 90px;
+  }
+
+  footer {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 24px;
+    margin-top: auto;
+    border-radius: 16px;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #555;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+  }
+
+  @media (max-width: 768px) {
+    nav {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    nav ul {
+      justify-content: center;
+    }
+
+    section {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+</style>
+
+</head>
+<body>
+
+  <nav>
+    <div class="brand">MySite</div>
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Articles</a></li>
+      <li><a href="#">Gallery</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </nav>
+
+  <section>
+    <!-- Card 1 -->
+    <article>
+      <figure>
+        <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" alt="Mountain adventure" />
+        <figcaption>Tranquil mountain sunrise</figcaption>
+      </figure>
+      <h2>Exploring Nature</h2>
+      <p>Nature provides us with beauty and peace. Walking in the woods or listening to birds can be incredibly calming and revitalizing.</p>
+    </article>
+
+    <!-- Card 2 -->
+    <article>
+      <figure>
+        <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=800&q=80" alt="City skyline" />
+        <figcaption>Night lights in the city</figcaption>
+      </figure>
+      <h2>Urban Adventures</h2>
+      <p>The city buzzes with energy and creativity. From bustling streets to quiet cafés, there's always something new to discover and learn.</p>
+    </article>
+
+    <!-- Card 3 -->
+    <article>
+      <figure>
+        <img src="images/download.jpeg" alt="Book and coffee" />
+        <figcaption>Warm coffee and words</figcaption>
+      </figure>
+      <h2>Simple Joys</h2>
+      <p>Sometimes, joy comes from the simplest things — a warm drink, a good book, or a quiet moment of reflection in a cozy space.</p>
+    </article>
+  </section>
+
+  <footer>
+    © 2025 MySite. All rights reserved. | Designed with ❤️ by Kalai
+  </footer>
+
+</body>
+</html>

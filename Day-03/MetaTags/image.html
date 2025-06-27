@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="refresh" content="5" />
+  <title>Media with Meta Tag</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #2b4effdc, #e9f0ff);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+
+    .media-section {
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 20px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+      padding: 30px;
+      margin-bottom: 30px;
+      text-align: center;
+      backdrop-filter: blur(12px);
+      width: 90%;
+      max-width: 700px;
+      transition: transform 0.3s ease;
+    }
+
+    .media-section:hover {
+      transform: scale(1.02);
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      color: #004080;
+    }
+
+    audio, video {
+      width: 100%;
+      border-radius: 12px;
+      outline: none;
+    }
+
+    video {
+      border: 2px solid #0091ff;
+    }
+
+    .image-container {
+      position: relative;
+      overflow: hidden;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    .image-container img {
+      width: 100%;
+      height: auto;
+      border-radius: 20px;
+      transition: transform 0.4s ease;
+    }
+
+    .image-container:hover img {
+      transform: scale(1.05);
+    }
+
+    .download-btn {
+      position: absolute;
+      bottom: 15px;
+      right: 15px;
+      background: #0091ff;
+      color: white;
+      border: none;
+      padding: 10px 12px;
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 5px 15px rgba(0, 145, 255, 0.5);
+      font-size: 18px;
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+
+    .download-btn:hover {
+      background: #0077cc;
+      transform: scale(1.1);
+    }
+
+    @media screen and (max-width: 600px) {
+      .media-section {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 🎵 Audio Section -->
+  <div class="media-section">
+    <h2>🎵 Background Audio</h2>
+    <audio controls muted loop>
+      <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg" />
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <!-- 🎬 Video Section -->
+  <div class="media-section">
+    <h2>🎬 Sample Video</h2>
+    <video controls muted loop>
+      <source src="https://samplelib.com/lib/preview/mp4/sample-5s.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+  </div>
+
+  <div class="media-section">
+    <h2>🖼️ Downloadable Image</h2>
+    <div class="image-container">
+      <img src="https://cdn.pixabay.com/photo/2017/08/30/07/52/fruit-2693764_1280.jpg" alt="Downloadable Fruit Image" />
+      <a href="https://cdn.pixabay.com/photo/2017/08/30/07/52/fruit-2693764_1280.jpg" download>
+        <button class="download-btn" title="Download Image">📥</button>
+      </a>
+    </div>
+  </div>
+
+  <!-- 🥝 Fruit Image Map Section
+  <div class="media-section">
+    <h2>🥝 Interactive Fruit Image Map</h2>
+    <div class="image-container">
+      <img src="https://cdn.pixabay.com/photo/2017/01/20/15/06/fruit-1995056_1280.jpg"
+           usemap="#fruitmap" 
+           alt="Fruits" />
+
+      <map name="fruitmap">
+       
+        <area shape="circle" coords="160,150,60" alt="Apple"
+              href="https://en.wikipedia.org/wiki/Apple" target="_blank" title="Apple" />
+
+        <area shape="rect" coords="400,300,600,400" alt="Banana"
+              href="https://en.wikipedia.org/wiki/Banana" target="_blank" title="Banana" />
+      </map>
+    </div>
+  </div> -->
+
+ <!-- 🌍 India Outline Map Section -->
+<div class="media-section">
+    <h2>🌍 India Outline Map</h2>
+    <div class="image-container">
+      <img 
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/India-map-en.svg/800px-India-map-en.svg.png" 
+        alt="India Outline Map" 
+        usemap="#indiaMap"
+        width="600" />
+      <map name="indiaMap">
+        <!-- Example clickable region (Delhi) -->
+        <area shape="rect" coords="320,260,340,280" href="https://en.wikipedia.org/wiki/Delhi" alt="Delhi" target="_blank" title="Delhi" />
+      </map>
+    </div>
+  </div>
+  
+  
+  
+  
+
+</body>
+</html>

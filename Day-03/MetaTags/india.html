@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Interactive India Map</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #eef2f3;
+      text-align: center;
+      padding: 20px;
+    }
+    h2 {
+      color: #2b4eff;
+    }
+    .image-container {
+      display: inline-block;
+      position: relative;
+    }
+    img {
+      border: 2px solid #ccc;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      width: 600px;
+      height: auto;
+    }
+    small {
+      display: block;
+      margin-top: 8px;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>🗺️ Interactive India Map</h2>
+
+  <div class="image-container" style="justify-items: center;">
+    <img src="https://www.pngkey.com/png/detail/213-2139676_india-transparent-line-drawing-india-outline-map-with.png
+    "
+         alt="India Map"
+         usemap="#indiaMap" />
+
+    <map name="indiaMap">
+      <area shape="circle" coords="335,140,12"
+            href="https://en.wikipedia.org/wiki/Delhi"
+            alt="Delhi"
+            title="Delhi"
+            target="_blank" />
+
+      <area shape="circle" coords="250,340,12"
+            href="https://en.wikipedia.org/wiki/Mumbai"
+            alt="Mumbai"
+            title="Mumbai"
+            target="_blank" />
+
+      <area shape="circle" coords="420,380,12"
+            href="https://en.wikipedia.org/wiki/Chennai"
+            alt="Chennai"
+            title="Chennai"
+            target="_blank" />
+    </map>
+  </div>
+
+  <small>

@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Student Profile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #34495e;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        /* Profile Card Styles */
+        .profile-card {
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease;
+        }
+        
+        .profile-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .profile-header {
+            background: linear-gradient(135deg, #3498db, #2c3e50);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .profile-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+            animation: pulse 15s infinite linear;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        
+        .profile-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            margin-bottom: 20px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .profile-avatar:hover {
+            transform: scale(1.05);
+        }
+        
+        .profile-name {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 5px;
+            position: relative;
+        }
+        
+        .profile-name::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background-color: white;
+        }
+        
+        .profile-title {
+            font-size: 16px;
+            opacity: 0.9;
+            margin-bottom: 10px;
+        }
+        
+        .profile-details {
+            padding: 30px;
+        }
+        
+        /* Tab Styles */
+        .tabs {
+            display: flex;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .tab-btn {
+            padding: 12px 20px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            color: #34495e;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        
+        .tab-btn::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: #3498db;
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        
+        .tab-btn.active {
+            color: #3498db;
+        }
+        
+        .tab-btn.active::after {
+            transform: scaleX(1);
+        }
+        
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Detail Styles */
+        .detail-item {
+            margin-bottom: 20px;
+        }
+        
+        .detail-label {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 5px;
+            display: block;
+            transition: color 0.3s ease;
+        }
+        
+        .detail-label:hover {
+            color: #3498db;
+        }
+        
+        .detail-value {
+            color: #34495e;
+            padding: 8px 12px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .detail-value:hover {
+            background-color: rgba(52, 152, 219, 0.1);
+        }
+        
+        /* Results Section Styles */
+        .results-section {
+            margin-top: 30px;
+        }
+        
+        .section-title {
+            font-size: 20px;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #3498db;
+            display: flex;
+            align-items: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .section-title:hover {
+            transform: translateX(5px);
+        }
+        
+        .section-title i {
+            margin-right: 10px;
+            color: #3498db;
+        }
+        
+        .results-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .results-table th, 
+        .results-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+            transition: background-color 0.3s ease;
+        }
+        
+        .results-table th {
+            background-color: #ecf0f1;
+            color: #2c3e50;
+            font-weight: 600;
+        }
+        
+        .results-table tr:hover {
+            background-color: rgba(52, 152, 219, 0.05);
+            transform: scale(1.01);
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+        
+        .result-passed {
+            color: #2ecc71;
+            font-weight: 600;
+        }
+        
+        .result-failed {
+            color: #e74c3c;
+            font-weight: 600;
+        }
+        
+        /* Summary Styles */
+        .summary {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #ecf0f1;
+            border-radius: 10px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .summary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        
+        .summary-label {
+            font-weight: 600;
+        }
+        
+        .cgpa {
+            font-size: 24px;
+            font-weight: 700;
+            color: #3498db;
+            transition: transform 0.3s ease;
+        }
+        
+        .cgpa:hover {
+            transform: scale(1.1);
+        }
+        
+        /* Filter Styles */
+        .filter-container {
+            margin-bottom: 20px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            padding: 8px 15px;
+            background-color: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .filter-btn:hover {
+            background-color: #ecf0f1;
+        }
+        
+        .filter-btn.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #3498db;
+        }
+        
+        /* Notification Styles */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 20px;
+            background-color: white;
+            border-left: 4px solid #3498db;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            z-index: 1000;
+            transform: translateX(120%);
+            transition: transform 0.5s ease;
+        }
+        
+        .notification.show {
+            transform: translateX(0);
+        }
+        
+        .notification-close {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            cursor: pointer;
+            font-size: 12px;
+            color: #999;
+        }
+        
+        /* Chart Styles */
+        .chart-container {
+            height: 300px;
+            margin: 20px 0;
+            position: relative;
+        }
+        
+        .bar {
+            position: absolute;
+            bottom: 0;
+            width: 40px;
+            background: linear-gradient(to top, #3498db, #74b9ff);
+            border-radius: 5px 5px 0 0;
+            transition: height 1s ease;
+        }
+        
+        .bar-label {
+            position: absolute;
+            bottom: -25px;
+            width: 100%;
+            text-align: center;
+            font-size: 12px;
+        }
+        
+        .bar-value {
+            position: absolute;
+            top: -25px;
+            width: 100%;
+            text-align: center;
+            font-weight: bold;
+            color: #3498db;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .profile-card {
+                border-radius: 10px;
+            }
+            
+            .profile-header {
+                padding: 20px;
+            }
+            
+            .profile-avatar {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .profile-details {
+                padding: 20px;
+            }
+            
+            .tabs {
+                flex-wrap: wrap;
+            }
+            
+            .tab-btn {
+                padding: 10px 15px;
+                font-size: 14px;
+            }
+            
+            .results-table th, 
+            .results-table td {
+                padding: 8px 10px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="profile-card">
+            <div class="profile-header">
+                <img src="https://picsum.photos/seed/student123/120/120.jpg" alt="Profile Picture" class="profile-avatar">
+                <h1 class="profile-name">John Doe</h1>
+                <p class="profile-title">Computer Science Student</p>
+            </div>
+            
+            <div class="profile-details">
+                <div class="tabs">
+                    <button class="tab-btn active" data-tab="basic-info">Basic Info</button>
+                    <button class="tab-btn" data-tab="academic">Academic Details</button>
+                    <button class="tab-btn" data-tab="performance">Performance</button>
+                </div>
+                
+                <div id="basic-info" class="tab-content active">
+                    <div class="detail-item">
+                        <span class="detail-label">College</span>
+                        <p class="detail-value">ABC Institute of Technology</p>
+                    </div>
+                    
+                    <div class="detail-item">
+                        <span class="detail-label">Department</span>
+                        <p class="detail-value">Department of Computer Science and Engineering</p>
+                    </div>
+                    
+                    <div class="detail-item">
+                        <span class="detail-label">Enrollment Number</span>
+                        <p class="detail-value">CS2021-0078</p>
+                    </div>
+                    
+                    <div class="detail-item">
+                        <span class="detail-label">Semester</span>
+                        <p class="detail-value">4th Semester</p>
+                    </div>
+                    
+                    <div class="detail-item">
+                        <span class="detail-label">Email</span>
+                        <p class="detail-value">john.doe@abc.edu</p>
+                    </div>
+                    
+                    <div class="detail-item">
+                        <span class="detail-label">Phone</span>
+                        <p class="detail-value">+1 (555) 123-4567</p>
+                    </div>
+                    
+                    <div class="detail-item">
+                        <span class="detail-label">Address</span>
+                        <p class="detail-value">123 College Road, Tech City, CA 90210</p>
+                    </div>
+                </div>
+                
+                <div id="academic" class="tab-content">
+                    <div class="results-section">
+                        <h2 class="section-title"><i class="fas fa-graduation-cap"></i> Semester Results</h2>
+                        
+                        <div class="filter-container">
+                            <button class="filter-btn active" data-filter="all">All Courses</button>
+                            <button class="filter-btn" data-filter="passed">Passed</button>
+                            <button class="filter-btn" data-filter="failed">Failed</button>
+                        </div>
+                        
+                        <table class="results-table">
+                            <thead>
+                                <tr>
+                                    <th>Course Code</th>
+                                    <th>Course Name</th>
+                                    <th>Credits</th>
+                                    <th>Grade</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="course-row" data-status="passed">
+                                    <td>CS401</td>
+                                    <td>Data Structures and Algorithms</td>
+                                    <td>4</td>
+                                    <td>A</td>
+                                    <td class="result-passed"><i class="fas fa-check-circle"></i> Passed</td>
+                                </tr>
+                                <tr class="course-row" data-status="passed">
+                                    <td>CS402</td>
+                                    <td>Database Management Systems</td>
+                                    <td>4</td>
+                                    <td>B+</td>
+                                    <td class="result-passed"><i class="fas fa-check-circle"></i> Passed</td>
+                                </tr>
+                                <tr class="course-row" data-status="passed">
+                                    <td>CS403</td>
+                                    <td>Object Oriented Programming</td>
+                                    <td>3</td>
+                                    <td>A-</td>
+                                    <td class="result-passed"><i class="fas fa-check-circle"></i> Passed</td>
+                                </tr>
+                                <tr class="course-row" data-status="passed">
+                                    <td>MA401</td>
+                                    <td>Linear Algebra</td>
+                                    <td>3</td>
+                                    <td>C</td>
+                                    <td class="result-passed"><i class="fas fa-check-circle"></i> Passed</td>
+                                </tr>
+                                <tr class="course-row" data-status="failed">
+                                    <td>EL401</td>
+                                    <td>Electronics Fundamentals</td>
+                                    <td>3</td>
+                                    <td>F</td>
+                                    <td class="result-failed"><i class="fas fa-times-circle"></i> Failed</td>
+                                </tr>
+                                <tr class="course-row" data-status="passed">
+                                    <td>CS404</td>
+                                    <td>Computer Networks</td>
+                                    <td>4</td>
+                                    <td>B</td>
+                                    <td class="result-passed"><i class="fas fa-check-circle"></i> Passed</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="summary">
+                        <h2 class="section-title"><i class="fas fa-chart-line"></i> Semester Summary</h2>
+                        
+                        <div class="summary-item">
+                            <span class="summary-label">Total Credits Attempted:</span>
+                            <span>21</span>
+                        </div>
+                        
+                        <div class="summary-item">
+                            <span class="summary-label">Credits Earned:</span>
+                            <span>18</span>
+                        </div>
+                        
+                        <div class="summary-item">
+                            <span class="summary-label">CGPA:</span>
+                            <span class="cgpa">8.2</span>
+                        </div>
+                        
+                        <div class="summary-item">
+                            <span class="summary-label">Result Status:</span>
+                            <span class="result-failed">Backlog (1)</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="performance" class="tab-content">
+                    <div class="results-section">
+                        <h2 class="section-title"><i class="fas fa-chart-bar"></i> Performance Chart</h2>
+                        
+                        <div class="chart-container">
+                            <div class="bar" style="left: 50px; height: 0%;">
+                                <div class="bar-value">0</div>
+                                <div class="bar-label">CS401</div>
+                            </div>
+                            <div class="bar" style="left: 150px; height: 0%;">
+                                <div class="bar-value">0</div>
+                                <div class="bar-label">CS402</div>
+                            </div>
+                            <div class="bar"="left: 250px; height: 0%;">
+                                <div class="bar-value">0</div>
+                                <div class="bar-label">403</div>
+                            </div>
+                            <div class="bar" style="left: 350px; height: 0%;">
+                                <div class="bar-value">0</div>
+                                <div class="bar-label">MA401</div>
+                            </div>
+                            <div class="bar" style="left: 450px; height: 0%;">
+                                <div class="bar-value">0</div>
+                                <div class="bar-label">EL401</div>
+                            </div>
+                            <div class="bar" style="left: 550px; height: 0%;">
+                                <div class="bar-value">0</div>
+                                <div class="bar-label">CS404</div>
+                            </div>
+                        </div>
+                        
+                        <div class="summary">
+                            <h2 class="section-title"><i class="fas fa-trophy"></i> Performance Highlights</h2>
+                            
+                            <div class="summary-item">
+                                <span class="summary-label">Highest Grade:</span>
+                                <span>A (CS401)</span>
+                            </div>
+                            
+                            <div class="summary-item">
+                                <span class="summary-label">Lowest Grade:</span>
+                                <span>F (EL401)</span>
+                            </div>
+                            
+                            <div class="summary-item">
+                                <span class="summary-label">Average Grade:</span>
+                                <span>B+</span>
+                            </div>
+                            
+                            <div class="summary-item">
+                                <span class="summary-label">Improvement:</span>
+                                <span class="result-passed">+0.5 from previous semester</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="notification" id="notification">
+        <span class="notification-close">&times;</span>
+        <p id="notification-text">This is a notification message.</p>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Tab functionality
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            tabBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const tabId = btn.getAttribute('data-tab');
+                    
+                    tabBtns.forEach(b => b.classList.remove('active'));
+                    tabContents.forEach(c => c.classList.remove('active'));
+                    
+                    btn.classList.add('active');
+                    document.getElementById(tabId).classList.add('active');
+                    
+                    // Show notification when switching to performance tab
+                    if (tabId === 'performance') {
+                        showNotification('Performance data is loading...');
+                        setTimeout(() => {
+                            animateChart();
+                        }, 500);
+                    }
+                });
+            });
+            
+            // Filter functionality
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const courseRows = document.querySelectorAll('.course-row');
+            
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const filter = btn.getAttribute('data-filter');
+                    
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    
+                    courseRows.forEach(row => {
+                        if (filter === 'all' || row.getAttribute('data-status') === filter) {
+                            row.style.display = '';
+                        } else {
+                            row.style.display = 'none';
+                        }
+                    });
+                    
+                    showNotification(`Showing ${filter} courses`);
+                });
+            });
+            
+            // Notification functionality
+            const notification = document.getElementById('notification');
+            const notificationText = document.getElementById('notification-text');
+            const notificationClose = document.querySelector('.notification-close');
+            
+            function showNotification(message) {
+                notificationText.textContent = message;
+                notification.classList.add('show');
+                
+                setTimeout(() => {
+                    notification.classList.remove('show');
+                }, 3000);
+            }
+            
+            notificationClose.addEventListener('click', () => {
+                notification.classList.remove('show');
+            });
+            
+            // Chart animation
+            function animateChart() {
+                const bars = document.querySelectorAll('.bar');
+                const grades = ['A', 'B+', 'A-', 'C', 'F', 'B'];
+                const gradeValues = { 'A': 95, 'B+': 85, 'A-': 80, 'B': 75, 'C': 65, 'F': 0 };
+                
+                bars.forEach((bar, index) => {
+                    const height = gradeValues[grades[index]];
+                    const valueElement = bar.querySelector('.bar-value');
+                    
+                    setTimeout(() => {
+                        bar.style.height = `${height}%`;
+                        valueElement.textContent = gradeValues[grades[index]];
+                    }, index * 200);
+                });
+            }
+            
+            // Add hover effects for interactive elements
+            const detailLabels = document.querySelectorAll('.detail-label');
+            const detailValues = document.querySelectorAll('.detail-value');
+            const sectionTitles = document.querySelectorAll('.section-title');
+            
+            detailLabels.forEach(label => {
+                label.addEventListener('click', () => {
+                    showNotification('Information copied to clipboard');
+                });
+            });
+            
+            detailValues.forEach(value => {
+                value.addEventListener('click', () => {
+                    showNotification('Information copied to clipboard');
+                });
+            });
+            
+            sectionTitles.forEach(title => {
+                title.addEventListener('click', () => {
+                    showNotification('Section information');
+                });
+            });
+            
+            // Show welcome notification
+            setTimeout(() => {
+                showNotification('Welcome to your interactive student profile!');
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

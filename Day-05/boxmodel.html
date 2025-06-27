@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Box Model Visual Demo</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #e0f7fa, #ffffff);
+      margin: 0;
+      padding: 60px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h2 {
+      font-size: 32px;
+      color: #01579b;
+      margin-bottom: 30px;
+    }
+
+    .wrapper {
+      background-color: #d1ecf1;
+      border: 3px dashed #0c5460;
+      padding: 35px;
+      margin: 20px;
+      position: relative;
+      border-radius: 12px;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    .box {
+      width: 320px;
+      padding: 25px;
+      border: 6px solid #28a745;
+      background-color: #ffffff;
+      color: #212529;
+      position: relative;
+      font-size: 16px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s ease;
+    }
+
+    .box:hover {
+      transform: scale(1.02);
+    }
+
+    .box::before {
+      content: "Padding Area";
+      position: absolute;
+      top: -24px;
+      left: 15px;
+      font-size: 12px;
+      background: #ffffff;
+      padding: 3px 8px;
+      color: #555;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .wrapper::before {
+      content: "Margin Area (Simulated)";
+      position: absolute;
+      top: -28px;
+      left: 15px;
+      font-size: 12px;
+      background: #e3f7fc;
+      padding: 3px 8px;
+      color: #0c5460;
+      border: 1px dashed #0c5460;
+      border-radius: 5px;
+    }
+
+    .label {
+      font-weight: 600;
+      font-size: 17px;
+      margin-bottom: 10px;
+      color: #000;
+    }
+
+    .legend {
+      max-width: 640px;
+      margin-top: 40px;
+      font-size: 15px;
+      background: #fff;
+      padding: 20px 25px;
+      border-radius: 10px;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+      line-height: 1.8;
+      color: #333;
+    }
+
+    .legend span {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 6px;
+      margin: 5px 10px 5px 0;
+      font-weight: 600;
+    }
+
+    .margin-box { background: #d1ecf1; color: #0c5460; }
+    .border-box { background: #28a745; color: white; }
+    .padding-box { background: #f8f9fa; color: #333; }
+    .content-box { background: #fff; border: 1px solid #ccc; }
+
+  </style>
+</head>
+<body>
+
+  <h2>CSS Box Model Visualization</h2>
+
+  <div class="wrapper">
+    <div class="box">
+      <div class="label">This is the content area:</div>
+      Hi, how are you! Today is your day. Make the most of it 🌟
+    </div>
+  </div>
+
+  <div class="legend">
+    <strong>Box Model Breakdown:</strong><br>
+    <span class="margin-box">Margin (light blue)</span> = space outside border<br>
+    <span class="border-box">Border (green)</span> = outlines the padding and content<br>
+    <span class="padding-box">Padding (light gray)</span> = space around content inside the border<br>
+    <span class="content-box">Content (white area)</span> = actual visible data/text
+  </div>
+
+</body>
+</html>

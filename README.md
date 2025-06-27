@@ -33,8 +33,8 @@ Welcome to the **40 Days Full Stack Java Training** repository! This program is 
 
 ### ✅ Tools & Deployment
 - Git & GitHub
-- Eclipse / IntelliJ IDEA
-- Postman (for API testing)
-- Localhost or Cloud Deployment
+- Visual Studio
+- Localhost
+- Api Testing - Api Types
 
 ---

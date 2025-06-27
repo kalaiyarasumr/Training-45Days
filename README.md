@@ -6,9 +6,9 @@ Welcome to the **40 Days Full Stack Java Training** repository! This program is 
 
 ## 📅 Training Duration
 
-**Total Days**: 40  
-**Level**: Beginner to Intermediate  
-**Track**: Full Stack Java Development
+- **Total Days**: 40  
+- **Level**: Beginner to Intermediate  
+- **Track**: Full Stack Java Development
 
 ---
 
@@ -17,14 +17,14 @@ Welcome to the **40 Days Full Stack Java Training** repository! This program is 
 ### ✅ Frontend
 - HTML5, CSS3, JavaScript
 - Responsive Design
-- Bootstrap / Tailwind (optional)
+- Bootstrap / Tailwind CSS (optional)
 - React (Basics, Optional)
 
 ### ✅ Backend
 - Core Java
-- JDBC
+- JDBC (Java Database Connectivity)
 - Servlets & JSP
-- Spring Framework (Spring Boot)
+- Spring Framework (including Spring Boot)
 
 ### ✅ Database
 - MySQL
@@ -33,22 +33,8 @@ Welcome to the **40 Days Full Stack Java Training** repository! This program is 
 
 ### ✅ Tools & Deployment
 - Git & GitHub
-- Eclipse / IntelliJ
-- Postman (for APIs)
-- Localhost / Cloud Deployment
+- Eclipse / IntelliJ IDEA
+- Postman (for API testing)
+- Localhost or Cloud Deployment
 
 ---
-
-## 📁 Folder Structure
-
-```bash
-Day-01/
-  └── Intro to HTML & Java Setup
-Day-02/
-  └── Basic CSS & Java Fundamentals
-Day-03/
-  └── Forms, Box Model, Java Loops
-...
-Day-40/
-  └── Final Project Submission & Deployment
-README.md

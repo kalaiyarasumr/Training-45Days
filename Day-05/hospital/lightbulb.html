@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Light Bulb Example</title>
+  <style>
+    body {
+      text-align: center;
+      font-family: Arial, sans-serif;
+      margin-top: 50px;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin: 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>The Light Bulb</h1>
+  
+  <!-- Light Bulb Image -->
+  <img id="bulb" src="https://www.w3schools.com/js/pic_bulboff.gif" alt="Bulb" style="width:150px">
+
+  <br><br>
+
+  <!-- Buttons to turn the bulb on/off -->
+  <button onclick="turnOn()">Turn On the Light</button>
+  <button onclick="turnOff()">Turn Off the Light</button>
+
+  <!-- JavaScript to change the image -->
+  <script>
+    function turnOn() {
+      document.getElementById('bulb').src = "https://www.w3schools.com/js/pic_bulbon.gif";
+    }
+
+    function turnOff() {
+      document.getElementById('bulb').src = "https://www.w3schools.com/js/pic_bulboff.gif";
+    }
+  </script>
+
+</body>
+</html>

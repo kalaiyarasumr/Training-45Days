@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Healthy Life Hospital</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* Base Styles */
+    :root {
+      --primary-color: #2a7fba;
+      --secondary-color: #1a5276;
+      --accent-color: #e74c3c;
+      --light-color: #f8f9fa;
+      --dark-color: #343a40;
+      --text-color: #333;
+      --text-light: #6c757d;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    body {
+      line-height: 1.6;
+      color: var(--text-color);
+      background-color: #f5f5f5;
+    }
+    
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    
+    /* Header & Navigation */
+    header {
+      background-color: white;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--primary-color);
+    }
+    
+    .logo span {
+      color: var(--accent-color);
+    }
+    
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+    }
+    
+    .nav-links li {
+      position: relative;
+    }
+    
+    .nav-links a {
+      font-weight: 500;
+      padding: 0.5rem 0;
+      transition: color 0.3s;
+    }
+    
+    .nav-links a:hover {
+      color: var(--primary-color);
+    }
+    
+    .dropdown-content {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: white;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 0.5rem;
+      padding: 1rem 0;
+      min-width: 200px;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      z-index: 10;
+    }
+    
+    .dropdown:hover .dropdown-content {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .dropdown-content li {
+      padding: 0.5rem 1.5rem;
+    }
+    
+    .dropdown-content a {
+      display: block;
+      transition: all 0.3s;
+    }
+    
+    .dropdown-content a:hover {
+      color: var(--primary-color);
+      transform: translateX(5px);
+    }
+    
+    .menu-toggle {
+      display: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+    
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1579684385127-1ef15d508118?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+      background-size: cover;
+      background-position: center;
+      height: 80vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+      position: relative;
+    }
+    
+    .hero-content {
+      max-width: 800px;
+      padding: 2rem;
+      animation: fadeIn 1.5s ease;
+    }
+    
+    .hero h1 {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+    
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+    }
+    
+    .cta-button {
+      display: inline-block;
+      background-color: var(--accent-color);
+      color: white;
+      padding: 0.8rem 2rem;
+      border-radius: 50px;
+      font-weight: 600;
+      transition: all 0.3s;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+    
+    .cta-button:hover {
+      background-color: #c0392b;
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+    
+    /* Services Section */
+    .services {
+      padding: 5rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .services h2 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 3rem;
+      color: var(--secondary-color);
+    }
+    
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+    
+    .card {
+      background-color: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    }
+    
+    .card-img {
+      height: 200px;
+      background-size: cover;
+      background-position: center;
+    }
+    
+    .card-content {
+      padding: 1.5rem;
+    }
+    
+    .card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: var(--primary-color);
+    }
+    
+    .card p {
+      color: var(--text-light);
+      margin-bottom: 1.5rem;
+    }
+    
+    .read-more {
+      color: var(--primary-color);
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.3s;
+    }
+    
+    .read-more:hover {
+      color: var(--secondary-color);
+      gap: 1rem;
+    }
+    
+    /* Patient Portal */
+    .patient-portal {
+      background-color: var(--primary-color);
+      color: white;
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+    
+    .patient-portal h2 {
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+    }
+    
+    .portal-options {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    
+    .portal-btn {
+      background-color: white;
+      color: var(--primary-color);
+      border: none;
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .portal-btn:hover {
+      background-color: var(--secondary-color);
+      color: white;
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+    
+    /* Testimonials */
+    .testimonials {
+      padding: 5rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .testimonials h2 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 3rem;
+      color: var(--secondary-color);
+    }
+    
+    .testimonial-carousel {
+      position: relative;
+      overflow: hidden;
+      height: 300px;
+    }
+    
+    .testimonial {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      background-color: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+    
+    .testimonial.active {
+      opacity: 1;
+    }
+    
+    .testimonial-text {
+      font-size: 1.2rem;
+      font-style: italic;
+      margin-bottom: 1.5rem;
+      max-width: 800px;
+    }
+    
+    .testimonial-author {
+      font-weight: 600;
+      color: var(--primary-color);
+    }
+    
+    .carousel-controls {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    
+    .carousel-btn {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background-color: var(--text-light);
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .carousel-btn.active {
+      background-color: var(--primary-color);
+      transform: scale(1.3);
+    }
+    
+    /* Location */
+    .location {
+      padding: 5rem 2rem;
+      background-color: var(--light-color);
+    }
+    
+    .location h2 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 3rem;
+      color: var(--secondary-color);
+    }
+    
+    #hospital-map {
+      height: 400px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Chat Widget */
+    .chat-widget {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 99;
+    }
+    
+    .chat-toggle {
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 1rem 1.5rem;
+      border-radius: 50px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s;
+    }
+    
+    .chat-toggle:hover {
+      background-color: var(--secondary-color);
+      transform: translateY(-3px);
+    }
+    
+    .chat-box {
+      position: absolute;
+      bottom: 70px;
+      right: 0;
+      width: 350px;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      overflow: hidden;
+      display: none;
+    }
+    
+    .chat-box.active {
+      display: block;
+    }
+    
+    .chat-header {
+      background-color: var(--primary-color);
+      color: white;
+      padding: 1rem;
+      font-weight: 600;
+    }
+    
+    .chat-messages {
+      height: 300px;
+      padding: 1rem;
+      overflow-y: auto;
+    }
+    
+    .chat-input {
+      width: 100%;
+      padding: 1rem;
+      border: none;
+      border-top: 1px solid #eee;
+    }
+    
+    /* Footer */
+    footer {
+      background-color: var(--dark-color);
+      color: white;
+      text-align: center;
+      padding: 2rem;
+    }
+    
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      text-align: left;
+    }
+    
+    .footer-column h3 {
+      margin-bottom: 1.5rem;
+      color: var(--light-color);
+    }
+    
+    .footer-column ul {
+      list-style: none;
+    }
+    
+    .footer-column li {
+      margin-bottom: 0.5rem;
+    }
+    
+    .footer-column a:hover {
+      color: var(--primary-color);
+    }
+    
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    
+    .social-links a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      transition: all 0.3s;
+    }
+    
+    .social-links a:hover {
+      background-color: var(--primary-color);
+      transform: translateY(-3px);
+    }
+    
+    .copyright {
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .modal-content {
+      background-color: white;
+      padding: 2rem;
+      border-radius: 10px;
+      max-width: 500px;
+      width: 90%;
+      position: relative;
+    }
+    
+    .close-modal {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      font-size: 1.5rem;
+      cursor: pointer;
+      background: none;
+      border: none;
+    }
+    
+    .modal h3 {
+      margin-bottom: 1.5rem;
+      color: var(--primary-color);
+    }
+    
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+    
+    .form-group input, 
+    .form-group textarea, 
+    .form-group select {
+      width: 100%;
+      padding: 0.8rem;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+    
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .navbar {
+        padding: 1rem;
+      }
+      
+      .nav-links {
+        position: fixed;
+        top: 70px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 70px);
+        background-color: white;
+        flex-direction: column;
+        align-items: center;
+        padding: 2rem 0;
+        transition: left 0.3s ease;
+      }
+      
+      .nav-links.active {
+        left: 0;
+      }
+      
+      .dropdown-content {
+        position: static;
+        opacity: 1;
+        visibility: visible;
+        box-shadow: none;
+        padding: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+      }
+      
+      .dropdown:hover .dropdown-content {
+        max-height: 500px;
+      }
+      
+      .menu-toggle {
+        display: block;
+      }
+      
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+      
+      .portal-options {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="logo">Healthy <span>Life</span> Hospital</div>
+      <div class="menu-toggle">
+        <i class="fas fa-bars"></i>
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li class="dropdown">
+          <a href="departments.html">Departments <i class="fas fa-chevron-down"></i></a>
+          <ul class="dropdown-content">
+            <li><a href="#">Cardiology</a></li>
+            <li><a href="#">Neurology</a></li>
+            <li><a href="#">Orthopedics</a></li>
+            <li><a href="#">Pediatrics</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="doctors.html">Doctors <i class="fas fa-chevron-down"></i></a>
+          <ul class="dropdown-content">
+            <li><a href="#">Dr. Anita Sharma</a></li>
+            <li><a href="#">Dr. Ravi Patel</a></li>
+            <li><a href="#">Dr. Meera Singh</a></li>
+          </ul>
+        </li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Your Health, Our Priority</h1>
+      <p>Expert care from dedicated professionals in modern facilities.</p>
+      <button class="cta-button" onclick="openAppointmentModal()">Book an Appointment</button>
+    </div>
+  </section>
+
+  <section class="services">
+    <h2>Our Services</h2>
+    <div class="cards">
+      <div class="card">
+        <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
+        <div class="card-content">
+          <h3>Emergency Care</h3>
+          <p>24/7 emergency services with rapid response and trained personnel.</p>
+          <a href="#" class="read-more">Read more <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1581595219315-a187dd40c322?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
+        <div class="card-content">
+          <h3>Surgery</h3>
+          <p>Highly equipped operation theatres and skilled surgeons.</p>
+          <a href="#" class="read-more">Read more <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1579684453423-f84349ef60b0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
+        <div class="card-content">
+          <h3>Diagnostics</h3>
+          <p>Complete range of lab and imaging services for accurate diagnosis.</p>
+          <a href="#" class="read-more">Read more <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="patient-portal">
+    <h2>Patient Portal</h2>
+    <div class="portal-options">
+      <button class="portal-btn" onclick="openLoginModal()"><i class="fas fa-sign-in-alt"></i> Login</button>
+      <button class="portal-btn" onclick="openRegisterModal()"><i class="fas fa-user-plus"></i> Register</button>
+      <button class="portal-btn" onclick="openAppointmentModal()"><i class="fas fa-calendar-check"></i> Book Appointment</button>
+    </div>
+  </section>
+
+  <section class="testimonials">
+    <h2>Patient Testimonials</h2>
+    <div class="testimonial-carousel">
+      <div class="testimonial active">
+        <p class="testimonial-text">"The care I received at Healthy Life Hospital was exceptional. The doctors were knowledgeable and took the time to explain everything to me."</p>
+        <p class="testimonial-author">- Rajesh Kumar</p>
+      </div>
+      <div class="testimonial">
+        <p class="testimonial-text">"From the moment I walked in, I felt cared for. The staff went above and beyond to make sure I was comfortable."</p>
+        <p class="testimonial-author">- Priya Sharma</p>
+      </div>
+      <div class="testimonial">
+        <p class="testimonial-text">"The facilities are modern and clean, and the doctors are some of the best in the city. I highly recommend this hospital."</p>
+        <p class="testimonial-author">- Amit Patel</p>
+      </div>
+    </div>
+    <div class="carousel-controls">
+      <button class="carousel-btn active" onclick="goToTestimonial(0)"></button>
+      <button class="carousel-btn" onclick="goToTestimonial(1)"></button>
+      <button class="carousel-btn" onclick="goToTestimonial(2)"></button>
+    </div>
+  </section>
+
+  <section class="location">
+    <h2>Our Location</h2>
+    <div id="hospital-map"></div>
+  </section>
+
+  <div class="chat-widget">
+    <button class="chat-toggle" onclick="toggleChat()"><i class="fas fa-comment-medical"></i> Need Help?</button>
+    <div class="chat-box">
+      <div class="chat-header">Hospital Support</div>
+      <div class="chat-messages">
+        <div class="message received">Hello! How can we help you today?</div>
+      </div>
+      <input type="text" class="chat-input" placeholder="Type your message..." onkeypress="handleChatInput(event)">
+    </div>
+  </div>
+
+  <!-- Login Modal -->
+  <div class="modal" id="loginModal">
+    <div class="modal-content">
+      <button class="close-modal" onclick="closeModal('loginModal')">&times;</button>
+      <h3>Patient Login</h3>
+      <form id="loginForm">
+        <div class="form-group">
+          <label for="loginEmail">Email</label>
+          <input type="email" id="loginEmail" required>
+        </div>
+        <div class="form-group">
+          <label for="loginPassword">Password</label>
+          <input type="password" id="loginPassword" required>
+        </div>
+        <button type="submit" class="cta-button">Login</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Register Modal -->
+  <div class="modal" id="registerModal">
+    <div class="modal-content">
+      <button class="close-modal" onclick="closeModal('registerModal')">&times;</button>
+      <h3>Patient Registration</h3>
+      <form id="registerForm">
+        <div class="form-group">
+          <label for="regName">Full Name</label>
+          <input type="text" id="regName" required>
+        </div>
+        <div class="form-group">
+          <label for="regEmail">Email</label>
+          <input type="email" id="regEmail" required>
+        </div>
+        <div class="form-group">
+          <label for="regPhone">Phone Number</label>
+          <input type="tel" id="regPhone" required>
+        </div>
+        <div class="form-group">
+          <label for="regPassword">Password</label>
+          <input type="password" id="regPassword" required>
+        </div>
+        <button type="submit" class="cta-button">Register</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Appointment Modal -->
+  <div class="modal" id="appointmentModal">
+    <div class="modal-content">
+      <button class="close-modal" onclick="closeModal('appointmentModal')">&times;</button>
+      <h3>Book an Appointment</h3>
+      <form id="appointmentForm">
+        <div class="form-group">
+          <label for="apptName">Full Name</label>
+          <input type="text" id="apptName" required>
+        </div>
+        <div class="form-group">
+          <label for="apptPhone">Phone Number</label>
+          <input type="tel" id="apptPhone" required>
+        </div>
+        <div class="form-group">
+          <label for="apptEmail">Email</label>
+          <input type="email" id="apptEmail" required>
+        </div>
+        <div class="form-group">
+          <label for="apptDepartment">Department</label>
+          <select id="apptDepartment" required>
+            <option value="">Select Department</option>
+            <option value="cardiology">Cardiology</option>
+            <option value="neurology">Neurology</option>
+            <option value="orthopedics">Orthopedics</option>
+            <option value="pediatrics">Pediatrics</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="apptDoctor">Preferred Doctor</label>
+          <select id="apptDoctor" required>
+            <option value="">Select Doctor</option>
+            <option value="dr_sharma">Dr. Anita Sharma</option>
+            <option value="dr_patel">Dr. Ravi Patel</option>
+            <option value="dr_singh">Dr. Meera Singh</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="apptDate">Date</label>
+          <input type="date" id="apptDate" required>
+        </div>
+        <div class="form-group">
+          <label for="apptTime">Time</label>
+          <input type="time" id="apptTime" required>
+        </div>
+        <div class="form-group">
+          <label for="apptMessage">Message (Optional)</label>
+          <textarea id="apptMessage" rows="3"></textarea>
+        </div>
+        <button type="submit" class="cta-button">Book Appointment</button>
+      </form>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-column">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="departments.html">Departments</a></li>
+          <li><a href="doctors.html">Doctors</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h3>Services</h3>
+        <ul>
+          <li><a href="#">Emergency Care</a></li>
+          <li><a href="#">Surgery</a></li>
+          <li><a href="#">Diagnostics</a></li>
+          <li><a href="#">Health Checkups</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h3>Contact Us</h3>
+        <ul>
+          <li><i class="fas fa-map-marker-alt"></i> 123 Health Street, Medical City</li>
+          <li><i class="fas fa-phone"></i> +1 234 567 890</li>
+          <li><i class="fas fa-envelope"></i> info@healthylifehospital.com</li>
+        </ul>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="copyright">
+      <p>&copy; 2025 Healthy Life Hospital. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile Menu Toggle
+    document.querySelector('.menu-toggle').addEventListener('click', function() {
+      document.querySelector('.nav-links').classList.toggle('active');
+      this.querySelector('i').classList.toggle('fa-bars');
+      this.querySelector('i').classList.toggle('fa-times');
+    });
+
+    // Smooth Scrolling for Anchor Links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+
+    // Testimonial Carousel
+    let currentTestimonial = 0;
+    const testimonials = document.querySelectorAll('.testimonial');
+    const dots = document.querySelectorAll('.carousel-btn');
+    
+    function showTestimonial(index) {
+      testimonials.forEach(testimonial => testimonial.classList.remove('active'));
+      dots.forEach(dot => dot.classList.remove('active'));
+      
+      testimonials[index].classList.add('active');
+      dots[index].classList.add('active');
+      currentTestimonial = index;
+    }
+    
+    function goToTestimonial(index) {
+      showTestimonial(index);
+    }
+    
+    // Auto-rotate testimonials
+    setInterval(() => {
+      currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+      showTestimonial(currentTestimonial);
+    }, 5000);
+    
+    // Modal Functions
+    function openModal(modalId) {
+      document.getElementById(modalId).style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+    
+    function closeModal(modalId) {
+      document.getElementById(modalId).style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
+    
+    function openLoginModal() {
+      closeAllModals();
+      openModal('loginModal');
+    }
+    
+    function openRegisterModal() {
+      closeAllModals();
+      openModal('registerModal');
+    }
+    
+    function openAppointmentModal() {
+      closeAllModals();
+      openModal('appointmentModal');
+    }
+    
+    function closeAllModals() {
+      document.querySelectorAll('.modal').forEach(modal => {
+        modal.style.display = 'none';
+      });
+      document.body.style.overflow = 'auto';
+    }
+    
+    // Close modal when clicking outside
+    window.addEventListener('click', function(event) {
+      if (event.target.classList.contains('modal')) {
+        closeAllModals();
+      }
+    });
+    
+    // Form Submissions
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Login functionality will be implemented soon!');
+      closeModal('loginModal');
+    });
+    
+    document.getElementById('registerForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Registration functionality will be implemented soon!');
+      closeModal('registerModal');
+    });
+    
+    document.getElementById('appointmentForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Appointment booked successfully! We will contact you shortly.');
+      closeModal('appointmentModal');
+    });
+    
+    // Chat Widget
+    function toggleChat() {
+      document.querySelector('.chat-box').classList.toggle('active');
+    }
+    
+    function handleChatInput(e) {
+      if (e.key === 'Enter' && e.target.value.trim() !== '') {
+        const message = e.target.value;
+        const chatMessages = document.querySelector('.chat-messages');
+        
+        // Add user message
+        const userMsg = document.createElement('div');
+        userMsg.className = 'message sent';
+        userMsg.textContent = message;
+        chatMessages.appendChild(userMsg);
+        
+        // Clear input
+        e.target.value = '';
+        
+        // Simulate reply after a delay
+        setTimeout(() => {
+          const replyMsg = document.createElement('div');
+          replyMsg.className = 'message received';
+          replyMsg.textContent = 'Thank you for your message. Our representative will get back to you shortly.';
+          chatMessages.appendChild(replyMsg);
+          chatMessages.scrollTop = chatMessages.scrollHeight;
+        }, 1000);
+        
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+      }
+    }
+    
+    // Initialize Google Map
+    function initMap() {
+      // This would be replaced with actual Google Maps API code
+      const mapElement = document.getElementById('hospital-map');
+      mapElement.innerHTML = '<div style="width:100%;height:100%;display:flex;justify-content:center;align-items:center;background-color:#eee;"><i class="fas fa-map-marker-alt" style="font-size:3rem;color:var(--primary-color);"></i></div>';
+    }
+    
+    // Initialize the page
+    window.onload = function() {
+      initMap();
+    };
+  </script>
+</body>
+</html>

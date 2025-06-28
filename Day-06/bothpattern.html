@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Star Pattern</title>
+</head>
+<body>
+    <h1 style="display: flex;justify-content: center;align-items: flex-start;align-content: flex-end;">Star Pattern </h1>
+    <div id="output" style="display: flex; justify-content: center;"></div>
+</body>
+<script>
+    let output = "";
+    let n = 6;
+
+    for (let i = n; i >= 1; i--) {
+        output += "*".repeat(i) + "<br>";
+    }
+      output += "<br>"; 
+     for (let i = 1; i <= n; i++) {
+        output += "*".repeat(i) + "<br>";
+    }
+  
+       document.getElementById("output").innerHTML = output;
+   
+</script>

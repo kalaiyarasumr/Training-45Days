@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Student Grade Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 40px;
+      text-align: center;
+      background-color: #f4f4f4;
+    }
+    #output {
+      margin-top: 20px;
+      font-size: 1.5rem;
+      color: #0077b6;
+    }
+    .highlight {
+      color: #d62828;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Student Grade Calculator</h1>
+  <div id="output"></div>
+
+  <script>
+    let marks = prompt("Enter the student's marks (0-100):");
+    marks = Number(marks);
+
+    let result = "";
+
+    if (isNaN(marks) || marks < 0 || marks > 100) {
+      result = "Invalid input. Please enter marks between 0 and 100.";
+    } else {
+      let grade = (marks > 90) ? "A"
+                : (marks > 80) ? "B"
+                : (marks > 70) ? "C"
+                : (marks > 60) ? "D"
+                : (marks > 50) ? "E"
+                : "F";
+
+      result = `
+        You entered: ${marks}<br><br>
+        <span class="highlight">Grade:</span> ${grade}
+      `;
+    }
+
+    document.getElementById("output").innerHTML = result;
+    alert(result.replace(/<br>/g, "\n").replace(/<[^>]*>/g, ""));
+    console.log(result.replace(/<br>/g, "\n").replace(/<[^>]*>/g, ""));
+  </script>
+
+</body>
+</html>

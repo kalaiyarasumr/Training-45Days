@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Prime Number Checker</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 40px;
+      text-align: center;
+      background-color: #f4f4f4;
+    }
+    #output {
+      margin-top: 20px;
+      font-size: 1.5rem;
+      color: #0077b6;
+    }
+    .highlight {
+      color: #d62828;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Prime Number Checker</h1>
+  <div id="output"></div>
+
+  <script>
+    let num = prompt("Enter a number to check if it is prime:");
+    num = Number(num);
+
+    let result = "";
+
+    if (isNaN(num) || num < 2 || !Number.isInteger(num)) {
+      result = "Invalid input. Please enter an integer greater than 1.";
+    } else {
+      let isPrime = true;
+      for (let i = 2; i <= Math.sqrt(num); i++) {
+        if (num % i === 0) {
+          isPrime = false;
+          break;
+        }
+      }
+      result = isPrime
+        ? `<span class="highlight">${num}</span> is a prime number.`
+        : `<span class="highlight">${num}</span> is not a prime number.`;
+    }
+
+    document.getElementById("output").innerHTML = result;
+    alert(result.replace(/<br>/g, "\n").replace(/<[^>]*>/g, ""));
+    console.log(result.replace(/<br>/g, "\n").replace(/<[^>]*>/g, ""));
+  </script>

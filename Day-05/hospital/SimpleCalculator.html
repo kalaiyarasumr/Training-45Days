@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Highest Number Finder</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 40px;
+      text-align: center;
+      background-color: #f4f4f4;
+    }
+    #output {
+      margin-top: 20px;
+      font-size: 1.5rem;
+      color: #0077b6;
+    }
+    .highlight {
+      color: #d62828;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Highest Number Finder</h1>
+  <div id="output"></div>
+
+  <script>
+    let num1 = prompt("Enter the first number:");
+    let num2 = prompt("Enter the second number:");
+    let num3 = prompt("Enter the third number:");
+    
+    num1 = Number(num1);
+    num2 = Number(num2);
+    num3 = Number(num3);
+
+    let result = "";
+
+    if (isNaN(num1) || isNaN(num2) || isNaN(num3)) {
+      result = "Invalid input. Please enter numeric values.";
+    } else {
+      let highest, secondHighest;
+      
+      if (num1 >= num2 && num1 >= num3) {
+        highest = num1;
+        secondHighest = Math.max(num2, num3);
+      } else if (num2 >= num1 && num2 >= num3) {
+        highest = num2;
+        secondHighest = Math.max(num1, num3);
+      } else {
+        highest = num3;
+        secondHighest = Math.max(num1, num2);
+      }
+      
+      result = `
+        You entered: ${num1}, ${num2}, ${num3}<br><br>
+        <span class="highlight">Highest number:</span> ${highest}<br>
+        <span class="highlight">Second highest number:</span> ${secondHighest}
+      `;
+    }
+
+    document.getElementById("output").innerHTML = result;
+    alert(result.replace(/<br>/g, "\n").replace(/<[^>]*>/g, ""));
+    console.log(result.replace(/<br>/g, "\n").replace(/<[^>]*>/g, ""));
+  </script>
+
+</body>
+</html>

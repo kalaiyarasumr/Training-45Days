@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lowest Number Finder</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 40px;
+      text-align: center;
+      background-color: #f4f4f4;
+    }
+    #output {
+      margin-top: 20px;
+      font-size: 1.5rem;
+      color: #0077b6;
+    }
+    .highlight {
+      color: #d62828;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Lowest Number Finder</h1>
+  <div id="output"></div>
+
+  <script>
+    // Get three numbers from user
+    let num1 = prompt("Enter the first number:");
+    let num2 = prompt("Enter the second number:");
+    let num3 = prompt("Enter the third number:");
+    
+    // Convert to numbers
+    num1 = Number(num1);
+    num2 = Number(num2);
+    num3 = Number(num3);
+
+    let result = "";
+
+    if (isNaN(num1) || isNaN(num2) || isNaN(num3)) {
+      result = "Invalid input. Please enter numeric values.";
+    } else {
+      // Using ternary operators to find lowest and second lowest
+      let lowest = (num1 <= num2 && num1 <= num3) ? num1
+                  : (num2 <= num1 && num2 <= num3) ? num2
+                  : num3;
+
+      let secondLowest = (lowest === num1)
+        ? (num2 <= num3 ? num2 : num3)
+        : (lowest === num2)
+          ? (num1 <= num3 ? num1 : num3)
+          : (num1 <= num2 ? num1 : num2);
+      
+      result = `
+        You entered: ${num1}, ${num2}, ${num3}<br><br>
+        <span class="highlight">Lowest number:</span> ${lowest}<br>
+        <span class="highlight">Second lowest number:</span> ${secondLowest}
+      `;
+    }
+
+    document.getElementById("output").innerHTML = result;
+    alert(result.replace(/<br>/g, "\n").replace(/<[^>]*>/g, ""));
+    console.log(result.replace(/<br>/g, "\n").replace(/<[^>]*>/g, ""));
+  </script>
+
+</body>
+</html>

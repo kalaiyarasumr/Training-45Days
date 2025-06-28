@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    let Prime = true;
+    document.write("Prime Numbers from 40 to 150:<br>");
+    for (let i = 40; i <= 150; i++) {
+        Prime = true;
+        for (let j = 2; j < i; j++) {
+            if (i % j === 0) {
+                Prime = false;
+                break;
+            }
+        }
+        if (i < 2) {
+            Prime = false; 
+        }
+        if (Prime) {
+            document.write(i + "<br>");
+        }
+    }
+</script>
+</html>

@@ -6,21 +6,20 @@
     <title>Document</title>
 </head>
 <body>
-    <div id="numbers"></div>
-</body>
-<script>
-    let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-    let num = prompt("Enter a number: ");
-    for (let i = 0; i < numbers.length; i++) {
-        if (numbers[i] == num) {
-            numbers[i] = "Found";
+    <script>
+        let arr = [];
+        let n =2
+        for(let i=0;i<n;i++){
+            arr[i] = parseInt(prompt("Enter the number: "));
         }
-    }
-    document.getElementById("numbers").innerHTML = numbers.join(", ");
-    if (numbers.includes("Found")) {
-        alert("Number found in the array.");
-    } else {
-        alert("Number not found in the array.");
-    }
-</script>
-</html>
+
+        let display = "";
+        let sum = 0;
+        for(let i=0; i<arr.length; i++){
+            display += arr[i] + " ";
+            sum += arr[i];
+        }
+        document.write(display + "<br>");
+        alert("Sum of array elements: " + sum);
+    </script>
+</body>

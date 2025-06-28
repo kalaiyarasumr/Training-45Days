@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    let studntMap = new Map();
+    studntMap.set("name", "John");
+    studntMap.set("age", 25);
+    studntMap.set("grade", "A");        
+    studntMap.set("subjects", ["Math", "Science", "English"]);
+
+    let output = "";
+    for (let [key, value] of studntMap) {
+        output += key + ": " + (Array.isArray(value) ? value.join(", ") : value) + "<br>";
+    }
+    document.write(output);
+</script>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="student"></div>
+</body>
+<script>
+    let student = {
+        name: "John Doe",
+        age: 20,
+        grade: "A",
+        subjects: ["Math", "Science", "English"]
+    };
+
+    let output = "";
+    for (let key in student) {
+        output += key + ": " + (Array.isArray(student[key]) ? student[key].join(", ") : student[key]) + "<br>";
+    }
+    document.getElementById("student").innerHTML = output;
+</script>
+</html>

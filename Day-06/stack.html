@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    let students = ["John", "Jane", "Jim", "Jill"];
+    let stack = [];     
+    let output = "";
+    for (let i = 0; i < students.length; i++) {
+        stack.push(students[i]);
+    }
+    stack.push("jack");
+    output += "Stack after pushing 'jack':<br>" + stack.join(", ") + "<br><br>";
+    output += "Popping elements from the stack:<br>";
+    while (stack.length > 0) {
+        output += stack[stack.length - 1] + "<br>";
+        stack.pop();
+    }
+    document.write(output)      
+</script>
+</html>

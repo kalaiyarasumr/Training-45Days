@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .calculator {
+            background: #fff;
+            padding: 30px 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            width: 340px;
+        }
+        .display {
+            width: 100%;
+            height: 40px;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            text-align: right;
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            background: #f8f9fa;
+        }
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+        }
+        .buttons button {
+            padding: 18px 0;
+            font-size: 1.1rem;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            background: #fff;
+            color: #333;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .buttons button.operator {
+            background: #ffffff;
+            color: #000000;
+            font-weight: bold;
+        }
+        .buttons button.equals {
+            background: #ffffff;
+            color: #181717;
+            font-weight: bold;
+            grid-column: span 2;
+        }
+        .buttons button.clear {
+            background: #ffffff;
+            color: #000000;
+            font-weight: bold;
+            grid-column: span 5;
+        }
+        .buttons button:hover {
+            background: #f1f1f1;
+        }
+        #result {
+            color: #d62828;
+            font-size: 1.2rem;
+            margin-top: 10px;
+            display: block;
+            min-height: 24px;
+        }
+    </style>
+</head>
+<body>
+   
+    <div class="calculator">
+        <div style="text-align: center; margin-bottom: 20px;">
+        <h1 style="text-align: center; color: #333;">Simple Calculator</h1>
+        <p style="text-align: center; color: #666;">Perform basic arithmetic operations</p>
+    </div>
+        <input type="text" id="display" class="display" readonly>
+        <div class="buttons">
+            <button onclick="appendNumber('1')">1</button>
+            <button onclick="appendNumber('2')">2</button>
+            <button onclick="appendNumber('3')">3</button>
+            <button onclick="appendNumber('4')">4</button>
+            <button onclick="appendNumber('5')">5</button>
+            <button onclick="appendNumber('6')">6</button>
+            <button onclick="appendNumber('7')">7</button>
+            <button onclick="appendNumber('8')">8</button>
+            <button onclick="appendNumber('9')">9</button>
+            <button onclick="appendNumber('10')">10</button>
+            <button class="operator" onclick="setOperation('+')">+</button>
+            <button class="operator" onclick="setOperation('-')">-</button>
+            <button class="operator" onclick="setOperation('/')">/</button>
+            <button class="operator" onclick="setOperation('*')">*</button>
+            <button class="operator" onclick="appendDot()">.</button>
+            <button class="equals" onclick="calculateResult()">=</button>
+            <span id="result" style="grid-column: span 3;"></span>
+            <button class="clear" onclick="clearDisplay()">C</button>        
+        </div>
+    </div>
+    <script>
+        let currentInput = "";
+        let firstNumber = null;
+        let operation = null;
+        let waitingForSecondNumber = false;
+
+        function appendNumber(num) {
+            if (waitingForSecondNumber) {
+                currentInput = "";
+                waitingForSecondNumber = false;
+            }
+            currentInput += num;
+            updateDisplay();
+        }
+
+        function appendDot() {
+            if (!currentInput.includes('.')) {
+                if (currentInput === "") currentInput = "0";
+                currentInput += ".";
+                updateDisplay();
+            }
+        }
+
+        function setOperation(op) {
+            if (currentInput === "") return;
+            if (firstNumber === null) {
+                firstNumber = parseFloat(currentInput);
+            } else if (operation) {
+                firstNumber = operate(firstNumber, parseFloat(currentInput), operation);
+            }
+            operation = op;
+            waitingForSecondNumber = true;
+            updateDisplay();
+        }
+
+        function calculateResult() {
+            if (operation && currentInput !== "") {
+                let secondNumber = parseFloat(currentInput);
+                let result = operate(firstNumber, secondNumber, operation);
+                currentInput = result.toString(); // Show result in input field
+                document.getElementById("result").innerText = ""; // Optionally clear below result
+                firstNumber = null;
+                operation = null;
+                waitingForSecondNumber = false;
+                updateDisplay();
+            }
+        }
+
+        function operate(a, b, op) {
+            switch(op) {
+                case "+": return a + b;
+                case "-": return a - b;
+                case "*": return a * b;
+                case "/": return b !== 0 ? a / b : "Cannot divide by zero";
+                default: return b;
+            }
+        }
+
+        function clearDisplay() {
+            currentInput = "";
+            firstNumber = null;
+            operation = null;
+            waitingForSecondNumber = false;
+            document.getElementById("result").innerText = "";
+            updateDisplay();
+        }
+
+        function updateDisplay() {
+            document.getElementById("display").value = currentInput;
+        }
+
+        updateDisplay();
+    </script>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Drag and Drop Shapes</title>
+  <style>
+    .shape {
+      width: 80px;
+      height: 80px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+      font-size: 18px;
+      margin: 20px;
+      cursor: move;
+      user-select: none;
+    }
+    .circle {
+      background: #2196f3;
+      border-radius: 50%;
+    }
+    .square {
+      background: #e91e63;
+    }
+    .rectangle {
+      background: #4caf50;
+      width: 120px;
+      height: 60px;
+    }
+    .star {
+      background: transparent;
+      width: 90px;
+      height: 90px;
+      position: relative;
+    }
+    .star svg {
+      width: 90px;
+      height: 90px;
+      display: block;
+    }
+    .dropZone {
+      width: 120px;
+      height: 120px;
+      border: 2px dashed #ccc;
+      text-align: center;
+      line-height: 120px;
+      font-size: 16px;
+      margin: 20px;
+      display: inline-block;
+      vertical-align: top;
+      transition: background 0.2s, border-color 0.2s;
+      background: #fff;
+    }
+    .dropZone.active {
+      border-color: green;
+      background-color: #e0ffe0;
+    }
+    .dropZone.success {
+      border-color: #4caf50;
+      background: #d4ffd4;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+
+  <h2 style="text-align:center;">Drag the Shape to the Matching Drop Zone</h2>
+
+  <div style="text-align:center;">
+    <div id="circle" class="shape circle" draggable="true" data-shape="circle">Circle</div>
+    <div id="square" class="shape square" draggable="true" data-shape="square">Square</div>
+    <div id="rectangle" class="shape rectangle" draggable="true" data-shape="rectangle">Rect</div>
+    <div id="star" class="shape star" draggable="true" data-shape="star">
+      <svg viewBox="0 0 100 100">
+        <polygon points="50,10 61,39 92,39 66,59 76,89 50,70 24,89 34,59 8,39 39,39" fill="#ff9800"/>
+      </svg>
+    </div>
+  </div>
+
+  <div style="text-align:center;">
+    <div id="dropCircle" class="dropZone" data-shape="circle">Drop </div>
+    <div id="dropSquare" class="dropZone" data-shape="square">Drop </div>
+    <div id="dropRectangle" class="dropZone" data-shape="rectangle">Drop </div>
+    <div id="dropStar" class="dropZone" data-shape="star">Drop </div>
+  </div>
+
+  <script>
+    // Drag start: set data
+    document.querySelectorAll('.shape').forEach(shape => {
+      shape.addEventListener('dragstart', function (e) {
+        e.dataTransfer.setData('shape', this.dataset.shape);
+      });
+    });
+
+    // Drag over and leave for all drop zones
+    document.querySelectorAll('.dropZone').forEach(zone => {
+      zone.addEventListener('dragover', function (e) {
+        e.preventDefault();
+        this.classList.add('active');
+      });
+      zone.addEventListener('dragleave', function () {
+        this.classList.remove('active');
+      });
+      zone.addEventListener('drop', function (e) {
+        e.preventDefault();
+        this.classList.remove('active');
+        const droppedShape = e.dataTransfer.getData('shape');
+        if (droppedShape === this.dataset.shape) {
+          this.classList.add('success');
+          this.innerHTML = "✅ Matched!";
+        } else {
+          this.classList.remove('success');
+          this.innerHTML = "❌ Wrong Shape!";
+          setTimeout(() => {
+            this.innerHTML = "Drop " + this.dataset.shape.charAt(0).toUpperCase() + this.dataset.shape.slice(1);
+          }, 1000);
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Canvas with Polo Chocolate and Location</title>
+  <style>
+    canvas {
+      border: 2px solid #000;
+      display: block;
+      margin: 30px auto;
+    }
+    #location {
+      text-align: center;
+      font-size: 18px;
+      margin-top: 20px;
+    }
+    button {
+      display: block;
+      margin: 10px auto;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <h2 style="text-align:center;">Canvas with Polo & Location</h2>
+  <canvas id="myCanvas" width="400" height="300"></canvas>
+  <button onclick="getLocation()">Get My Location</button>
+  <div id="location">Your location will appear here.</div>
+
+  <script>
+    const canvas = document.getElementById("myCanvas");
+    const ctx = canvas.getContext("2d");
+
+    ctx.fillStyle = "#f0f0f0";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    ctx.fillStyle = "red";
+    ctx.fillRect(50, 50, 100, 70);
+
+    ctx.beginPath();
+    ctx.arc(250, 100, 40, 0, Math.PI * 2);
+    ctx.fillStyle = "blue";
+    ctx.fill();
+
+    ctx.fillStyle = "green";
+    ctx.font = "20px Arial";
+    ctx.fillText("Hello Canvas!", 120, 200);
+
+    // Polo chocolate shape
+    ctx.beginPath();
+    ctx.arc(200, 250, 40, 0, Math.PI * 2);
+    ctx.arc(200, 250, 20, 0, Math.PI * 2, true);
+    ctx.fillStyle = "white";
+    ctx.fill("evenodd");
+
+    ctx.fillStyle = "black";
+    ctx.font = "12px Arial";
+    ctx.fillText("POLO", 185, 255);
+
+    function getLocation() {
+      const locationDiv = document.getElementById("location");
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          function(position) {
+            const lat = position.coords.latitude;
+            const lon = position.coords.longitude;
+            locationDiv.innerHTML = `📍 Latitude: ${lat.toFixed(6)}<br>📍 Longitude: ${lon.toFixed(6)}`;
+          },
+          function(error) {
+            locationDiv.innerHTML = "❌ Unable to retrieve location.";
+          }
+        );
+      } else {
+        locationDiv.innerHTML = "❌ Geolocation not supported in this browser.";
+      }
+    }
+  </script>
+
+</body>
+</html>

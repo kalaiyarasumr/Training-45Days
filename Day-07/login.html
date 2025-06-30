@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Login & Sign Up Card</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body, html {
+      height: 100%;
+      background: linear-gradient(120deg,white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .card {
+      display: flex;
+      width: 800px;
+      max-width: 90%;
+      height: 500px;
+      background: rgba(255, 255, 255, 0.3);
+      backdrop-filter: blur(10px);
+      border-radius: 5px;
+      overflow: hidden;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .card-image {
+      flex: 1;
+      background: url('images/login-images.jpg') no-repeat center center;
+      background-size: cover;
+    }
+
+    .card-form {
+      flex: 1;
+      padding: 40px;
+      background: rgba(255, 255, 255, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .form-box {
+      width: 100%;
+    }
+
+    .form-box h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+    }
+
+    .form-group input:focus {
+      border-color: #007bff;
+      outline: none;
+    }
+
+    .form-box button {
+      width: 100%;
+      padding: 12px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .form-box button:hover {
+      background-color: #0056b3;
+    }
+
+    .error {
+      color: red;
+      font-size: 14px;
+      margin-top: 5px;
+      text-align: center;
+    }
+
+    .switch-link {
+      text-align: center;
+      margin-top: 15px;
+      font-size: 14px;
+    }
+
+    .switch-link a {
+      color: #007bff;
+      text-decoration: none;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      .card {
+        flex-direction: column;
+        height: auto;
+      }
+
+      .card-image {
+        height: 200px;
+        width: 100%;
+      }
+
+      .card-form {
+        width: 100%;
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="card-image"></div>
+    <div class="card-form">
+      <div class="form-box">
+        <!-- Login Form -->
+        <form id="login-form" onsubmit="return validateLogin()">
+          <h2>Login</h2>
+          <div class="form-group">
+            <input type="text" id="login-username" placeholder="Username" required />
+          </div>
+          <div class="form-group">
+            <input type="password" id="login-password" placeholder="Password" required />
+          </div>
+          <button type="submit">Login</button>
+          <div id="login-error" class="error"></div>
+          <div class="switch-link">
+            <a onclick="showForgotPassword()">Forgot Password?</a>
+          </div>
+          <div class="switch-link">
+            Don't have an account? <a onclick="switchTab('signup')">Sign up</a>
+          </div>
+        </form>
+
+        <!-- Sign Up Form -->
+        <form id="signup-form" style="display: none;" onsubmit="return validateSignup()">
+          <h2>Sign Up</h2>
+          <div class="form-group">
+            <input type="text" id="signup-username" placeholder="Username" required />
+          </div>
+          <div class="form-group">
+            <input type="email" id="signup-email" placeholder="Email" required />
+          </div>
+          <div class="form-group">
+            <input type="password" id="signup-password" placeholder="Password" required />
+          </div>
+          <div class="form-group">
+            <input type="password" id="signup-confirm" placeholder="Confirm Password" required />
+          </div>
+          <button type="submit">Sign Up</button>
+          <div id="signup-error" class="error"></div>
+          <div class="switch-link">
+            Already have an account? <a onclick="switchTab('login')">Login</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const demoUser = {
+      username: "user1",
+      password: "password123"
+    };
+
+    function switchTab(tab) {
+      const loginForm = document.getElementById("login-form");
+      const signupForm = document.getElementById("signup-form");
+
+      if (tab === "login") {
+        loginForm.style.display = "block";
+        signupForm.style.display = "none";
+      } else {
+        loginForm.style.display = "none";
+        signupForm.style.display = "block";
+      }
+    }
+
+    function validateLogin() {
+      const username = document.getElementById("login-username").value.trim();
+      const password = document.getElementById("login-password").value.trim();
+      const error = document.getElementById("login-error");
+
+      if (username === "" || password === "") {
+        error.textContent = "All fields are required!";
+        return false;
+      }
+
+      if (password.length < 6) {
+        error.textContent = "Password must be at least 6 characters.";
+        return false;
+      }
+
+      error.textContent = "";
+      alert("Logged in successfully!");
+      return false;
+    }
+
+    function validateSignup() {
+      const username = document.getElementById("signup-username").value.trim();
+      const email = document.getElementById("signup-email").value.trim();
+      const password = document.getElementById("signup-password").value.trim();
+      const confirm = document.getElementById("signup-confirm").value.trim();
+      const error = document.getElementById("signup-error");
+
+      if (!username || !email || !password || !confirm) {
+        error.textContent = "All fields are required!";
+        return false;
+      }
+
+      if (!email.includes("@") || !email.includes(".")) {
+        error.textContent = "Enter a valid email address.";
+        return false;
+      }
+
+      if (password.length < 6) {
+        error.textContent = "Password must be at least 6 characters.";
+        return false;
+      }
+
+      if (password !== confirm) {
+        error.textContent = "Passwords do not match.";
+        return false;
+      }
+
+      error.textContent = "";
+      alert("Signed up successfully!");
+      return false;
+    }
+
+    function showForgotPassword() {
+      const username = document.getElementById("login-username").value.trim();
+      const error = document.getElementById("login-error");
+      if (username === "") {
+        error.textContent = "Enter your username to retrieve password.";
+        return;
+      }
+      if (username === demoUser.username) {
+        error.textContent = "";
+        alert("Your password is: " + demoUser.password);
+      } else {
+        error.textContent = "Username not found!";
+      }
+    }
+  </script>
+</body>
+</html>

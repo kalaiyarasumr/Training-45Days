@@ -1,12 +1,12 @@
-# 💻 40 Days Full Stack Java Training
+# 💻 60 Days Full Stack Java Training
 
-Welcome to the **40 Days Full Stack Java Training** repository! This program is designed to build solid foundations in both frontend and backend web development using **Java and modern web technologies**.
+Welcome to the **60 Days Full Stack Java Training** repository! This program is designed to build solid foundations in both frontend and backend web development using **Java and modern web technologies**.
 
 ---
 
 ## 📅 Training Duration
 
-- **Total Days**: 40  
+- **Total Days**: 60  
 - **Level**: Beginner to Intermediate  
 - **Track**: Full Stack Java Development
 

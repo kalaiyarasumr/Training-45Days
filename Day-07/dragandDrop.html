@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Drag & Drop Quiz</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #eef2f3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px;
+    }
+
+    .question-box {
+      width: 300px;
+      height: 150px;
+      border: 3px dashed #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 30px;
+      background: #fff;
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    .answers {
+      display: flex;
+      gap: 20px;
+    }
+
+    .answer {
+      padding: 10px 20px;
+      background: #2196f3;
+      color: white;
+      border-radius: 8px;
+      cursor: grab;
+      user-select: none;
+    }
+
+    .answer:active {
+      cursor: grabbing;
+    }
+
+    /* Popup */
+    .popup {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #ff4d4d;
+      color: white;
+      padding: 15px 25px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      display: none;
+      animation: fadeInOut 2.5s ease-in-out forwards;
+    }
+
+    @keyframes fadeInOut {
+      0% { opacity: 0; transform: translateY(-20px); }
+      10% { opacity: 1; transform: translateY(0); }
+      90% { opacity: 1; transform: translateY(0); }
+      100% { opacity: 0; transform: translateY(-20px); }
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Drag the correct answer into the box</h2>
+
+  <div class="question-box" id="drop-zone" ondragover="allowDrop(event)" ondrop="drop(event)">
+    What is 2 + 2?
+  </div>
+
+  <div class="answers">
+    <div class="answer" draggable="true" ondragstart="drag(event)" id="ans1">3</div>
+    <div class="answer" draggable="true" ondragstart="drag(event)" id="ans2">4</div> <!-- Correct -->
+    <div class="answer" draggable="true" ondragstart="drag(event)" id="ans3">5</div>
+  </div>
+
+  <div class="popup" id="popup">Incorrect Answer! Try Again.</div>
+
+  <script>
+    function allowDrop(event) {
+      event.preventDefault();
+    }
+
+    function drag(event) {
+      event.dataTransfer.setData("text", event.target.id);
+    }
+
+    function drop(event) {
+      event.preventDefault();
+      const draggedId = event.dataTransfer.getData("text");
+      const draggedElement = document.getElementById(draggedId);
+
+      const correctId = "ans2"; // 4 is the correct answer
+
+      if (draggedId === correctId) {
+        event.target.innerHTML = ""; // Clear the box
+        event.target.appendChild(draggedElement);
+        draggedElement.style.cursor = "default";
+        draggedElement.setAttribute("draggable", "false");
+      } else {
+        showPopup();
+      }
+    }
+
+    function showPopup() {
+      const popup = document.getElementById("popup");
+      popup.style.display = "block";
+
+      setTimeout(() => {
+        popup.style.display = "none";
+      }, 2500);
+    }
+  </script>
+
+</body>
+</html>

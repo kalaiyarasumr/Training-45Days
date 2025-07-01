@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mouse Events Example</title>
+  <style>
+    #hoverButton {
+      background-color: lightblue;
+      color: black;
+      padding: 10px 20px;
+      border: none;
+      font-size: 18px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <button id="hoverButton" 
+          onmouseover="mouseOver()" 
+          onmouseout="mouseOut()">Hover Me!</button>
+
+  <script>
+    function mouseOver() {
+      document.getElementById("hoverButton").style.backgroundColor = "orange";
+    }
+
+    function mouseOut() {
+      document.getElementById("hoverButton").style.backgroundColor = "lightblue";
+    }
+  </script>
+
+</body>
+</html>

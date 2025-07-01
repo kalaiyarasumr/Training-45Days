@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Keyboard & Mouse Event Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background: #f4f4f4;
+        }
+        #output {
+            margin-top: 20px;
+            padding: 20px;
+            background: #fff;
+            border: 1px solid #ccc;
+            font-size: 1.5em;
+            color: #333;
+            width: 300px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Press any key or click/double-click the box below</h2>
+    <div id="output"
+         onclick="showClick()"
+         ondblclick="showDblClick()"
+         onmousedown="showMouseDown()"
+         onmouseenter="showMouseEnter()"
+         onmouseleave="showMouseLeave()">
+        Key pressed: <span id="key">None</span><br>
+        Mouse event: <span id="mouse">None</span>
+    </div>
+
+    <script>
+        document.addEventListener('keydown', function(event) {
+            document.getElementById('key').textContent = event.key;
+        });
+        function showClick() {
+            document.getElementById('mouse').textContent = 'Clicked';
+        }
+        function showDblClick() {
+            document.getElementById('mouse').textContent = 'Double Clicked';
+        }
+        function showMouseDown() {
+            document.getElementById('mouse').textContent = 'Mouse Down';
+        }
+        function showMouseEnter() {
+            document.getElementById('mouse').textContent = 'Mouse Enter';
+        }
+        function showMouseLeave() {
+            document.getElementById('mouse').textContent = 'Mouse Leave';
+        }
+    </script>
+</body>

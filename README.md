@@ -124,6 +124,10 @@ This intensive program will transform you from beginner to intermediate Full Sta
 
 ## 🚀 Getting Started
 
-1. **Clone the repository**
-   ```bash
-  https://github.com/kalaiyarasumr/Training-60Days.git
+Follow these steps to begin your 60-day Full Stack Java journey:
+
+### 1. **Clone the Repository**
+```bash
+git clone https://github.com/kalaiyarasumr/Training-60Days.git
+cd Training-60Days
+run

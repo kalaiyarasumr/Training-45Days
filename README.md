@@ -122,17 +122,8 @@ This intensive program will transform you from beginner to intermediate Full Sta
 
 ---
 
-## 📌 Key Features
-
-> <div style="background: #e7f5ff; padding: 15px; border-radius: 5px; border-left: 4px solid #4dabf7;">
->   <strong>🎯 Practical-Based Learning</strong><br>
->   Daily coding tasks • Mini-projects • Capstone projects • Real-world scenarios
-> </div>
-
----
-
 ## 🚀 Getting Started
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/your-username/60-days-java-training.git
+  https://github.com/kalaiyarasumr/Training-60Days.git

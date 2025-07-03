@@ -12,7 +12,7 @@ Welcome to the **60 Days Full Stack Java Training** repository! This program is 
 
 ---
 
-## 🧠 What You'll Learn
+## 🧠 What I'll Learn
 
 ### ✅ Frontend
 - HTML5, CSS3, JavaScript
